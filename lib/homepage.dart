@@ -1,3 +1,4 @@
+// homepage.dart
 // ignore_for_file: library_private_types_in_public_api
 
 import 'dart:io';
@@ -87,6 +88,17 @@ class _HomePageState extends State<HomePage> {
       }
     });
     _saveSavedKostData(); // Simpan data saved kost yang diperbarui
+  }
+
+  // Fungsi untuk menghapus kost
+  void _deleteKost(int index) {
+    setState(() {
+      kostList.removeAt(index); // Hapus kost dari list
+    });
+    _saveKostData(); // Simpan data setelah dihapus
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(content: Text('Kost berhasil dihapus')),
+    );
   }
 
   void _onItemTapped(int index) async {
@@ -191,12 +203,20 @@ class _HomePageState extends State<HomePage> {
                       ],
                     ),
                     isThreeLine: true,
-                    trailing: IconButton(
-                      icon: Icon(
-                        isSaved ? Icons.bookmark : Icons.bookmark_border,
-                      ),
-                      onPressed: () =>
-                          _toggleSave(index), // Tambah atau hapus bookmark
+                    trailing: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        IconButton(
+                          icon: Icon(
+                            isSaved ? Icons.bookmark : Icons.bookmark_border,
+                          ),
+                          onPressed: () => _toggleSave(index),
+                        ),
+                        IconButton(
+                          icon: const Icon(Icons.delete, color: Colors.red),
+                          onPressed: () => _deleteKost(index),
+                        ),
+                      ],
                     ),
                   ),
                 );
