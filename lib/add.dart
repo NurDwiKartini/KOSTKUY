@@ -39,21 +39,7 @@ class _AddPageState extends State<AddPage> {
         backgroundColor: const Color(0xFFA8E6CF), // Warna hijau pastel
         title: const Text('Tambah Kost Baru',
             style: TextStyle(color: Colors.black)), // Mengubah warna teks
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.cloud_upload,
-                color: Colors.black), // Mengubah warna ikon
-            onPressed: () {
-              if (_formKey.currentState!.validate()) {
-                // Aksi unggah data (misalnya simpan ke database)
-                ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(content: Text('Data berhasil diunggah')),
-                );
-                Navigator.pop(context);
-              }
-            },
-          ),
-        ],
+        // Tombol unggah di bagian actions sudah dihapus
       ),
       body: Stack(
         children: [
